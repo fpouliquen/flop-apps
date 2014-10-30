@@ -28,4 +28,16 @@ public class Score extends AbstractDocument {
 		return "Score [title=" + title + ", author=" + author + ", key=" + key + "]";
 	}
 
+	public String getTitle() {
+		return title;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public String getKey() {
+		return key;
+	}
+
 }

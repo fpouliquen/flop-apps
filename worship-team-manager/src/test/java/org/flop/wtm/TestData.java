@@ -19,6 +19,9 @@ public class TestData {
 		scores.drop();
 
 		scores.insert(dbObjectFromJson("{_id : 1, title : 'Le chemin, la vérité, la vie', author : 'SergeHub', key : ''}"));
+		scores.insert(dbObjectFromJson("{_id : 2, title : 'A la croix', author : '', key : ''}"));
+		scores.insert(dbObjectFromJson("{_id : 3, title : 'Remplis-moi de ta présence', author : 'Stéphane Quéry', key : ''}"));
+		scores.insert(dbObjectFromJson("{_id : 4, title : 'A la rivière', author : 'Stéphane Quéry', key : ''}"));
 	}
 
 	private static MongoClient mongoClient() {

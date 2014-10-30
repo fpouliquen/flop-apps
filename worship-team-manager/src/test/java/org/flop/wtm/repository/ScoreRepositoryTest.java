@@ -1,6 +1,10 @@
 
 package org.flop.wtm.repository;
 
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.junit.Assert.assertThat;
+
 import java.util.List;
 
 import org.flop.wtm.TestData;
@@ -26,8 +30,28 @@ public class ScoreRepositoryTest {
 	}
 
 	@Test
-	public void testFindByTitleAndAuthorAndKey() {
-		List<Score> scores = scoreRepository.findByTitleAndAuthorAndKey("vérité", null, null);
+	public void testFindByTitleAndAuthorAndKeyCaseInsensitive() {
+		List<Score> scores = scoreRepository.findByTitleAndAuthorAndKey("VéRité", "HUB", null);
 
+		assertThat(scores, notNullValue());
+		assertThat(scores.size(), equalTo(1));
+		assertThat(scores.get(0).getTitle(), equalTo("Le chemin, la vérité, la vie"));
+		assertThat(scores.get(0).getAuthor(), equalTo("SergeHub"));
+	}
+
+	@Test
+	public void testFindByTitleAndAuthorAndKeyMultipleResults() {
+		List<Score> scores = scoreRepository.findByTitleAndAuthorAndKey(null, "StéphAnE QUéry", null);
+
+		assertThat(scores, notNullValue());
+		assertThat(scores.size(), equalTo(2));
+	}
+
+	@Test
+	public void testFindByTitleAndAuthorAndKeyNullValues() {
+		List<Score> scores = scoreRepository.findByTitleAndAuthorAndKey(null, null, null);
+
+		assertThat(scores, notNullValue());
+		assertThat(scores.size(), equalTo(4));
 	}
 }
