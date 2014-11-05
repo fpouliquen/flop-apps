@@ -3,7 +3,14 @@ package org.flop.wtm.controller;
 
 import org.springframework.ui.Model;
 
-public interface SearchController {
+public interface ScoreController {
+
+	/**
+	 * Displays the score page.
+	 * 
+	 * @return The displayed template.
+	 */
+	public String display();
 
 	/**
 	 * This method is used to perform a search on the scores using the given parameters.
@@ -12,8 +19,8 @@ public interface SearchController {
 	 * @param author The author of the wanted scores.
 	 * @param key The key of the wanted scores.
 	 * @param model The model object used to transfer data.
-	 * @return
+	 * @return The retrieved scores.
 	 */
-	public abstract String search(String title, String author, String key, Model model);
+	public String search(String title, String author, String key, Model model);
 
 }
