@@ -17,8 +17,6 @@ public class HomeControllerImpl implements HomeController {
 	@Override
 	@RequestMapping(method = RequestMethod.GET)
 	public String displayHomePage() {
-		LOGGER.info("test");
-		System.out.println("test");
 		return "index";
 	}
 }
