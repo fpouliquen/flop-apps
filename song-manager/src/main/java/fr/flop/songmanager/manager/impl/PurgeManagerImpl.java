@@ -2,19 +2,15 @@ package fr.flop.songmanager.manager.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import fr.flop.songmanager.business.SongBusiness;
-import fr.flop.songmanager.business.SongWriterBusiness;
 import fr.flop.songmanager.dao.entity.SongWriter;
+import fr.flop.songmanager.dao.repository.SongWriterRepository;
 import fr.flop.songmanager.manager.PurgeManager;
 import fr.flop.songmanager.util.exception.ServerException;
 
 public class PurgeManagerImpl implements PurgeManager {
 
 	@Autowired
-	private SongBusiness songBusiness;
-
-	@Autowired
-	private SongWriterBusiness songWriterBusiness;
+	private SongWriterRepository songWriterRepository;
 
 	/*
 	 * *************************************************************************
@@ -28,7 +24,7 @@ public class PurgeManagerImpl implements PurgeManager {
 
 	@Override
 	public void purgeSongWriter(Integer songWriterId) {
-		SongWriter songWriter = songWriterBusiness.findBy(songWriterId);
+		SongWriter songWriter = songWriterRepository.findOne(songWriterId);
 
 		if (songWriter == null) {
 			throw new ServerException("The song writer to remove does not exist !");
@@ -38,7 +34,7 @@ public class PurgeManagerImpl implements PurgeManager {
 				songSongWriter.getSong().getSongSongWriters().remove(songSongWriter);
 			});
 
-			songWriterBusiness.delete(songWriter);
+			songWriterRepository.delete(songWriter);
 		}
 	}
 }

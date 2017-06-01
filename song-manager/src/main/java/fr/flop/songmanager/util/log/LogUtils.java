@@ -17,11 +17,11 @@ public final class LogUtils {
 	}
 
 	public static String getLog(Song song, ELogFunction fonction, String message) {
-		return String.format("[%s] [%s] - %s", fonction, song.getTitle(), message);
+		return String.format("[%s] [%s %s] - %s", fonction, song.getId(), song.getTitle(), message);
 	}
 
 	public static String getLog(SongWriter songWriter, ELogFunction fonction, String message) {
-		return String.format("[%s] [%s %s] - %s", fonction, songWriter.getFirstName(), songWriter.getLastName(),
-				message);
+		return String.format("[%s] [%s %s %s] - %s", fonction, songWriter.getId(), songWriter.getFirstName(),
+				songWriter.getLastName(), message);
 	}
 }
